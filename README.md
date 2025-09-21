@@ -31,7 +31,9 @@ The assessment was performed using non-intrusive, publicly available tools to co
 A network scan reported an open SSH port on the public internet running an outdated and vulnerable version OpenSSH 6.7p1. This version of OpenSSH has multiple CVEs such as `CVE-2018-15473`, `CVE-2015-5600`. The `CVE-2018-15473` is a critical one; this vulnerability allows a remote attacker to determine if a specific username is valid on the server without needing to guess a password. By sending a specially malformed request, the server will behave differently depending on whether the username exists or not.
 
 **Evidence:**
-<img width="972" height="266" alt="Screenshot 2025-09-21 at 10 27 52 AM" src="https://github.com/user-attachments/assets/fb55ed00-c4ee-4682-9703-9a9e6f2c8a99" />
+
+<img width="1398" height="453" alt="Screenshot 2025-09-21 at 4 41 26 PM" src="https://github.com/user-attachments/assets/b8852d77-3875-4ba4-9672-1abc5d51c8a6" />
+
 > We can clearly see the version of OpenSSH running on the domain is 6.7p1.
 
 **Recommendation:**
@@ -48,7 +50,7 @@ The web application at `http://www.itsecgames.com` is insecure because it uses H
 
 **Evidence:**
 
-<img width="472" height="266" alt="Screenshot 2025-09-21 at 10 29 17 AM" src="https://github.com/user-attachments/assets/eee079b5-a58e-4188-8170-02cb7c5f2f10" />
+<img width="490" height="258" alt="Screenshot 2025-09-21 at 4 41 59 PM" src="https://github.com/user-attachments/assets/6ebe3147-539a-4e83-8c24-cc6c2db0ca74" />
 
 > The site is served over `http://`.
 
@@ -65,7 +67,7 @@ The response does not protect against clickjacking attacks. It should include ei
 
 **Evidence:**
 
-<img width="472" height="266" alt="Screenshot 2025-09-21 at 10 29 17 AM" src="https://github.com/user-attachments/assets/eee079b5-a58e-4188-8170-02cb7c5f2f10" />
+<img width="1581" height="258" alt="Screenshot 2025-09-21 at 4 43 02 PM" src="https://github.com/user-attachments/assets/0b5c2af3-22e2-490f-95e3-2e54bc10a053" />
 
 > We can see there are no `X-Frame-Options` or `Content-Security-Policy` with `frame-ancestors 'self'` in the HTTP headers to prevent clickjacking.
 
@@ -81,7 +83,9 @@ The response does not protect against clickjacking attacks. It should include ei
 The web server’s ETag header for the root path (/) includes sensitive information, specifically the inode number (e43) and file size (5d7959bd3c800). This information leakage, as described in CVE-2003-1418, can be exploited by attackers to gain insights into the server’s file system structure. While it does not directly compromise data or server control, it could aid in further reconnaissance and targeted attacks.
 
 **Evidence:**
-<img width="1437" height="266" alt="Screenshot 2025-09-21 at 10 31 46 AM" src="https://github.com/user-attachments/assets/6e226d16-f5a5-45ee-a865-a8e8df7c5bc1" />
+
+<img width="1581" height="258" alt="Screenshot 2025-09-21 at 4 43 46 PM" src="https://github.com/user-attachments/assets/5c3a2106-dde2-4eb7-a04d-fd6c0deaf063" />
+
 > ETag header reveals inode, file size, and mtime.
 
 **Recommendation:**
@@ -96,7 +100,9 @@ The web server’s ETag header for the root path (/) includes sensitive informat
 The Apache default file `README` was found accessible via the `/icons/README` path. While this specific file might not contain highly sensitive information on its own, its presence indicates that default configuration files, which can sometimes disclose server versions, directory structures, or other potentially useful information for an attacker, are publicly exposed. This can aid in further reconnaissance and potentially lead to more targeted attacks.
 
 **Evidence:**
-<img width="1437" height="266" alt="Screenshot 2025-09-21 at 10 32 10 AM" src="https://github.com/user-attachments/assets/839b994a-6719-4876-bdbc-d3949675dedd" />
+
+<img width="1581" height="241" alt="Screenshot 2025-09-21 at 4 44 06 PM" src="https://github.com/user-attachments/assets/774d8385-bed3-4081-b7f1-5919c16b70a5" />
+
 > The file is accessible at `/icons/README`.
 
 **Recommendation:**
